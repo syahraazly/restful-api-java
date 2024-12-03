@@ -40,12 +40,6 @@ public class ArtistService implements ArtistServiceImpl {
     }
 
     @Override
-    public ArtistResponse getById(Long id) {
-        ArtistEntity fromDB = findById(id);
-        return mapperToDTO(fromDB);
-    }
-
-    @Override
     public ArtistEntity create(ArtistRequest request) {
         validateRequest(request);
 
@@ -56,37 +50,8 @@ public class ArtistService implements ArtistServiceImpl {
         return artistEntity;
     }
 
-    @Override
-    public ArtistEntity update(ArtistRequest request) {
-        ArtistEntity entity = findById(request.getId());
-
-        validateRequest(request, entity);
-
-        // Save to DB
-        ArtistEntity artistEntity = mapperToEntity(entity, request);
-        repository.saveAndFlush(artistEntity);
-
-        return artistEntity;
-    }
-
-    @Override
-    public String delete(Long id) {
-        ArtistEntity entity = findById(id);
-        repository.delete(entity);
-
-        return SUCCESS_PROCESS;
-    }
-
     public void validateRequest(ArtistRequest request) {
         validateUtil.validateMandatoryField(request);
-    }
-
-    public void validateRequest(ArtistRequest request, ArtistEntity entity) {
-        validateUtil.validateMandatoryField(request);
-    }
-
-    private ArtistEntity findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new BusinessException(ERROR_NOT_FOUND));
     }
 
 }

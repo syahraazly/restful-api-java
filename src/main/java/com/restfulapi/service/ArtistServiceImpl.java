@@ -10,11 +10,5 @@ public interface ArtistServiceImpl {
 
     List<ArtistResponse> getAll();
 
-    ArtistResponse getById(Long id);
-
     ArtistEntity create(ArtistRequest request);
-
-    ArtistEntity update(ArtistRequest request);
-
-    String delete(Long id);
 }

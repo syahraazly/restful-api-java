@@ -23,23 +23,8 @@ public class ArtistController {
         return artistServiceImpl.getAll();
     }
 
-    @GetMapping(value = "/data/{id}")
-    public ArtistResponse getById(@PathVariable Long id) {
-        return artistServiceImpl.getById(id);
-    }
-
     @PostMapping(value = "/add")
     public ArtistEntity create(@RequestBody ArtistRequest request) {
         return artistServiceImpl.create(request);
-    }
-
-    @PutMapping(value = "/update")
-    public ArtistEntity update(@RequestBody ArtistRequest request) {
-        return artistServiceImpl.update(request);
-    }
-
-    @DeleteMapping(value = "/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        return artistServiceImpl.delete(id);
     }
 }
