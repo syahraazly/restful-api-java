@@ -52,6 +52,7 @@ public class ArtistService implements ArtistServiceImpl {
 
     public void validateRequest(ArtistRequest request) {
         validateUtil.validateMandatoryField(request);
+        validateUtil.validateDuplicateName(request);
     }
 
 }

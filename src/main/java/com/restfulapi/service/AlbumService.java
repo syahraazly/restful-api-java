@@ -82,9 +82,17 @@ public class AlbumService implements AlbumServiceImpl {
 
     public void validateRequest(AlbumRequest request) {
         validateUtil.validateMandatoryField(request);
+        validateUtil.validateDuplicateName(request);
     }
 
     public void validateRequest(AlbumEntity entity, AlbumRequest request) {
         validateUtil.validateMandatoryField(request);
+        validateAlbumName(entity, request);
+    }
+
+    public void validateAlbumName(AlbumEntity entity, AlbumRequest request) {
+        if (!entity.getName().equalsIgnoreCase(request.getName())) {
+            validateUtil.validateDuplicateName(request);
+        }
     }
 }
